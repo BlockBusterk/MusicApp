@@ -2,14 +2,14 @@ curl -X POST "https://accounts.spotify.com/api/token" \
      -H "Content-Type: application/x-www-form-urlencoded" \
      -d "grant_type=client_credentials&client_id=138e6b74f98643779bd9ecba801be340&client_secret=657c4977cfee4e1ab92f502093950cd7"
 
-access_token : BQADj_tJIRlRqiYyXWVlel0kRhGS9ZGyIgIaGqkYRhmAE3BGWzQ-PBiffEa4P0FjkRIPzFRBytRZtnv5JOSxGV1WQODUxQb9zObuO6oEWXgtfc5efEs
+access_token : BQBRPWknuMnBy_32ox56IhRZ8_dl_MeJXDJPXh-ahkuWqJjQB-zUCmomXYIW_7VioHLoNLMFYGqYlOeWUB26vbNj1JM4MXCgnYKib6F0TlhzKPG1jIk
 
 curl "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb" \
-     -H "Authorization: Bearer BQADj_tJIRlRqiYyXWVlel0kRhGS9ZGyIgIaGqkYRhmAE3BGWzQ-PBiffEa4P0FjkRIPzFRBytRZtnv5JOSxGV1WQODUxQb9zObuO6oEWXgtfc5efEs"
+     -H "Authorization: Bearer BQBRPWknuMnBy_32ox56IhRZ8_dl_MeJXDJPXh-ahkuWqJjQB-zUCmomXYIW_7VioHLoNLMFYGqYlOeWUB26vbNj1JM4MXCgnYKib6F0TlhzKPG1jIk"
 
 stepzen import \
         curl "https://api.spotify.com/v1/recommendations?seed_genres=pop" \
-        --header "Authorization: Bearer BQADj_tJIRlRqiYyXWVlel0kRhGS9ZGyIgIaGqkYRhmAE3BGWzQ-PBiffEa4P0FjkRIPzFRBytRZtnv5JOSxGV1WQODUxQb9zObuO6oEWXgtfc5efEs" \
+        --header "Authorization: Bearer BQBRPWknuMnBy_32ox56IhRZ8_dl_MeJXDJPXh-ahkuWqJjQB-zUCmomXYIW_7VioHLoNLMFYGqYlOeWUB26vbNj1JM4MXCgnYKib6F0TlhzKPG1jIk" \
         --query-name "recommendations" \
         --query-type "Recommendation" \
         --name "recommendations" \
@@ -22,3 +22,14 @@ stepzen import \
         --query-name "getToken" \
         --query-type "TokenResponse" \
         --name "auth"
+
+curl 'https://api.spotify.com/v1/search?q=nf&type=track' \
+  --header 'Authorization: Bearer BQBRPWknuMnBy_32ox56IhRZ8_dl_MeJXDJPXh-ahkuWqJjQB-zUCmomXYIW_7VioHLoNLMFYGqYlOeWUB26vbNj1JM4MXCgnYKib6F0TlhzKPG1jIk'
+
+stepzen import \
+        curl 'https://api.spotify.com/v1/search?q=nf&type=track' \
+        --header "Authorization: Bearer BQBRPWknuMnBy_32ox56IhRZ8_dl_MeJXDJPXh-ahkuWqJjQB-zUCmomXYIW_7VioHLoNLMFYGqYlOeWUB26vbNj1JM4MXCgnYKib6F0TlhzKPG1jIk" \
+        --query-name "search" \
+        --query-type "SearchResult" \
+        --name "search" \
+        --prefix "Search"
